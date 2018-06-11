@@ -1,3 +1,4 @@
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -18,9 +19,6 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-
-// In production (Heroku) I redirect the HTTP requests to https.
-// Documentation: http://jaketrent.com/post/https-redirect-node-heroku/
 if (app.get('env') === 'production') {
     app.use(function(req, res, next) {
         if (req.headers['x-forwarded-proto'] !== 'https') {
@@ -59,7 +57,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(partials());
 app.use(flash());
 
-// Dynamic Helper:
 app.use(function(req, res, next) {
 
     // To use req.session in the views
